@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroSense Research Dashboard</title>
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<header id="site-header" class="site-header">
+  <nav id="main-nav" class="main-nav" aria-label="Primary navigation">
+    <a href="index.html" id="nav-logo" class="nav-logo">
+      <span class="nav-logo-text">NeuroSense</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="research.html" class="nav-link">Research</a></li>
+      <li><a href="dashboard.html" class="nav-link nav-link-active" aria-current="page">Dashboard</a></li>
+      <li><a href="survey.html" class="nav-link">Survey</a></li>
+      <li><a href="https://github.com/BaaniS6/NeuroSense" class="nav-link" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <a href="docs/NeuroSense_Research_Paper.pdf" id="nav-download-paper" class="nav-cta">Download Paper</a>
+  </nav>
+</header>
+
+<main id="dashboard-main" class="dashboard-main">
+
+  <!-- ================= HERO HEADER ================= -->
+  <section id="dashboard-hero" class="dashboard-hero" aria-labelledby="dashboard-hero-title">
+    <div class="dashboard-hero-content">
+      <h1 id="dashboard-hero-title" class="dashboard-hero-title">NeuroSense Research Dashboard</h1>
+      <p id="dashboard-hero-subtitle" class="dashboard-hero-subtitle">Real-Time Wearable Neuromotor Assessment Platform</p>
+    </div>
+
+    <div id="session-meta" class="session-meta" aria-label="Current session information">
+      <div class="session-meta-item" id="meta-session">
+        <span class="session-meta-label">Current Session</span>
+        <span class="session-meta-value" id="current-session-id">—</span>
+      </div>
+      <div class="session-meta-item" id="meta-participant">
+        <span class="session-meta-label">Participant ID</span>
+        <span class="session-meta-value" id="participant-id">—</span>
+      </div>
+      <div class="session-meta-item" id="meta-connection">
+        <span class="session-meta-label">Connection Status</span>
+        <span class="session-meta-value" id="connection-status">—</span>
+      </div>
+      <div class="session-meta-item" id="meta-time">
+        <span class="session-meta-label">Current Time</span>
+        <span class="session-meta-value" id="current-time">—</span>
+      </div>
+      <div class="session-meta-item" id="meta-battery">
+        <span class="session-meta-label">Battery Status</span>
+        <span class="session-meta-value" id="battery-status">—</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OVERVIEW CARDS ================= -->
+  <section id="overview-section" class="overview-section" aria-labelledby="overview-heading">
+    <h2 id="overview-heading" class="section-heading">Dashboard Overview</h2>
+
+    <div id="overview-cards" class="overview-cards">
+      <article id="card-stability-score" class="overview-card" data-metric="stability-score">
+        <div class="overview-card-icon" aria-hidden="true">
+          <i class="icon icon-stability"></i>
+        </div>
+        <p class="overview-card-value" id="stability-score-value">—</p>
+        <p class="overview-card-label">Stability Score</p>
+      </article>
+
+      <article id="card-tremor-frequency" class="overview-card" data-metric="tremor-frequency">
+        <div class="overview-card-icon" aria-hidden="true">
+          <i class="icon icon-frequency"></i>
+        </div>
+        <p class="overview-card-value" id="tremor-frequency-value">—</p>
+        <p class="overview-card-label">Tremor Frequency (Hz)</p>
+      </article>
+
+      <article id="card-rms-motion" class="overview-card" data-metric="rms-motion">
+        <div class="overview-card-icon" aria-hidden="true">
+          <i class="icon icon-rms"></i>
+        </div>
+        <p class="overview-card-value" id="rms-motion-value">—</p>
+        <p class="overview-card-label">RMS Motion</p>
+      </article>
+
+      <article id="card-session-duration" class="overview-card" data-metric="session-duration">
+        <div class="overview-card-icon" aria-hidden="true">
+          <i class="icon icon-duration"></i>
+        </div>
+        <p class="overview-card-value" id="session-duration-value">—</p>
+        <p class="overview-card-label">Session Duration</p>
+      </article>
+
+      <article id="card-motion-classification" class="overview-card" data-metric="motion-classification">
+        <div class="overview-card-icon" aria-hidden="true">
+          <i class="icon icon-classification"></i>
+        </div>
+        <p class="overview-card-value" id="motion-classification-value">—</p>
+        <p class="overview-card-label">Motion Classification</p>
+      </article>
+
+      <article id="card-sensor-status" class="overview-card" data-metric="sensor-status">
+        <div class="overview-card-icon" aria-hidden="true">
+          <i class="icon icon-sensor"></i>
+        </div>
+        <p class="overview-card-value" id="sensor-status-value">—</p>
+        <p class="overview-card-label">Sensor Status</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= LIVE SENSOR SECTION ================= -->
+  <section id="live-sensor-section" class="live-sensor-section" aria-labelledby="live-sensor-heading">
+    <h2 id="live-sensor-heading" class="section-heading">Live Sensor Feed</h2>
+
+    <div id="sensor-panels" class="sensor-panels">
+
+      <article id="accelerometer-panel" class="sensor-panel" data-sensor="accelerometer">
+        <header class="sensor-panel-header">
+          <h3 class="sensor-panel-title">Accelerometer</h3>
+          <span class="sensor-panel-unit">m/s²</span>
+        </header>
+
+        <canvas id="accelerometerChart"></canvas> class="sensor-graph-container" data-chart="accelerometer" aria-label="Accelerometer live graph"></div>
+
+        <dl id="accelerometer-readouts" class="sensor-readouts">
+          <div class="sensor-readout" id="accel-x-readout">
+            <dt>Current X</dt>
+            <dd id="accel-x-value">—</dd>
+          </div>
+          <div class="sensor-readout" id="accel-y-readout">
+            <dt>Current Y</dt>
+            <dd id="accel-y-value">—</dd>
+          </div>
+          <div class="sensor-readout" id="accel-z-readout">
+            <dt>Current Z</dt>
+            <dd id="accel-z-value">—</dd>
+          </div>
+          <div class="sensor-readout" id="accel-max-readout">
+            <dt>Maximum Value</dt>
+            <dd id="accel-max-value">—</dd>
+          </div>
+          <div class="sensor-readout" id="accel-avg-readout">
+            <dt>Average Value</dt>
+            <dd id="accel-avg-value">—</dd>
+          </div>
+          <div class="sensor-readout" id="accel-rate-readout">
+            <dt>Sampling Rate</dt>
+            <dd id="accel-sampling-rate">—</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article id="gyroscope-panel" class="sensor-panel" data-sensor="gyroscope">
+        <header class="sensor-panel-header">
+          <h3 class="sensor-panel-title">Gyroscope</h3>
+          <span class="sensor-panel-unit">°/s</span>
+        </header>
+
+       <canvas id="gyroscopeChart"></canvas> class="sensor-graph-container" data-chart="gyroscope" aria-label="Gyroscope live graph"></div>
+
+        <dl id="gyroscope-readouts" class="sensor-readouts">
+          <div class="sensor-readout" id="gyro-x-readout">
+            <dt>Current X</dt>
+            <dd id="gyro-x-value">—</dd>
+          </div>
+          <div class="sensor-readout" id="gyro-y-readout">
+            <dt>Current Y</dt>
+            <dd id="gyro-y-value">—</dd>
+          </div>
+          <div class="sensor-readout" id="gyro-z-readout">
+            <dt>Current Z</dt>
+            <dd id="gyro-z-value">—</dd>
+          </div>
+          <div class="sensor-readout" id="gyro-max-readout">
+            <dt>Maximum Value</dt>
+            <dd id="gyro-max-value">—</dd>
+          </div>
+          <div class="sensor-readout" id="gyro-avg-readout">
+            <dt>Average Value</dt>
+            <dd id="gyro-avg-value">—</dd>
+          </div>
+          <div class="sensor-readout" id="gyro-rate-readout">
+            <dt>Sampling Rate</dt>
+            <dd id="gyro-sampling-rate">—</dd>
+          </div>
+        </dl>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= HAND VISUALIZATION ================= -->
+  <section id="hand-visualization-section" class="hand-visualization-section" aria-labelledby="hand-visualization-heading">
+    <article id="hand-visualization-card" class="hand-visualization-card">
+      <h2 id="hand-visualization-heading" class="section-heading">Hand Motion Visualization</h2>
+
+      <div id="hand-visualization-container" class="hand-visualization-container" data-visual="hand-model" aria-label="Live hand motion visualization placeholder"></div>
+
+      <dl id="hand-visualization-readouts" class="hand-visualization-readouts">
+        <div class="hand-readout" id="current-gesture-readout">
+          <dt>Current Gesture</dt>
+          <dd id="current-gesture-value">—</dd>
+        </div>
+        <div class="hand-readout" id="motion-confidence-readout">
+          <dt>Motion Confidence</dt>
+          <dd id="motion-confidence-value">—</dd>
+        </div>
+        <div class="hand-readout" id="orientation-readout">
+          <dt>Orientation</dt>
+          <dd id="orientation-value">—</dd>
+        </div>
+      </dl>
+    </article>
+  </section>
+
+  <!-- ================= SESSION CONTROLS ================= -->
+  <section id="session-controls-section" class="session-controls-section" aria-labelledby="session-controls-heading">
+    <h2 id="session-controls-heading" class="section-heading">Session Controls</h2>
+
+    <div id="session-controls" class="session-controls">
+      <button type="button" id="btn-start-session" class="control-btn control-btn-start">Start Session</button>
+      <button type="button" id="btn-pause-session" class="control-btn control-btn-pause">Pause</button>
+      <button type="button" id="btn-stop-session" class="control-btn control-btn-stop">Stop</button>
+      <button type="button" id="btn-export-csv" class="control-btn control-btn-export">Export CSV</button>
+      <button type="button" id="btn-generate-report" class="control-btn control-btn-report">Generate Report</button>
+      <button type="button" id="btn-reset-dashboard" class="control-btn control-btn-reset">Reset Dashboard</button>
+    </div>
+  </section>
+
+  <!-- ================= RECENT SESSIONS TABLE ================= -->
+  <section id="recent-sessions-section" class="recent-sessions-section" aria-labelledby="recent-sessions-heading">
+    <h2 id="recent-sessions-heading" class="section-heading">Recent Sessions</h2>
+
+    <table id="recent-sessions-table" class="recent-sessions-table">
+      <caption class="visually-hidden">Recent recorded research sessions</caption>
+      <thead>
+        <tr>
+          <th scope="col">Participant ID</th>
+          <th scope="col">Date</th>
+          <th scope="col">Duration</th>
+          <th scope="col">Average Stability</th>
+          <th scope="col">Export</th>
+        </tr>
+      </thead>
+      <tbody id="recent-sessions-body">
+        <!-- Session rows populated dynamically -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= RESEARCH NOTES ================= -->
+  <section id="research-notes-section" class="research-notes-section" aria-labelledby="research-notes-heading">
+    <h2 id="research-notes-heading" class="section-heading">Research Notes</h2>
+
+    <div id="research-notes-list" class="research-notes-list">
+      <article class="research-note" id="research-note-template">
+        <p class="research-note-text">Participant demonstrated mild tremor during sustained posture.</p>
+        <span class="research-note-meta" id="research-note-meta">—</span>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer id="site-footer" class="site-footer">
+  <p class="footer-line">NeuroSense Research Prototype</p>
+  <p class="footer-line">Developed for biomedical engineering research.</p>
+  <p class="footer-line" id="footer-version">Version 1.1</p>
+  <a href="https://github.com/BaaniS6/NeuroSense" id="footer-github-link" class="footer-github-link" target="_blank" rel="noopener">GitHub Repository</a>
+</footer>
+
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>
