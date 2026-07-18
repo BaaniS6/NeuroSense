@@ -1,15 +1,3 @@
-![HTML5](https://img.shields.io/badge/HTML-5-orange)
-
-![CSS3](https://img.shields.io/badge/CSS-3-blue)
-
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
-
-![ESP32](https://img.shields.io/badge/ESP32-IoT-red)
-
-![Research](https://img.shields.io/badge/Research-Prototype-success)
-
-![License](https://img.shields.io/badge/License-MIT-green)
-
 <div align="center">
 
 # 🧠 NeuroSense
