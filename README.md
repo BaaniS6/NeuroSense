@@ -6,7 +6,7 @@
 
 **Quantifying Hand Movement through Physics, Embedded Systems, Signal Processing, and Biomedical Engineering**
 
-[🌐 Website](https://baanis6.github.io/NeuroSense/) • [📊 Dashboard](https://baanis6.github.io/NeuroSense/dashboard.html) • 📄 Research Page
+[🌐 Website](https://baanis6.github.io/NeuroSense/) • [📊 Dashboard](https://baanis6.github.io/NeuroSense/dashboard.html) • [📄 Research Page](https://baanis6.github.io/NeuroSense/research.html)
 
 ---
 
