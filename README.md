@@ -8,6 +8,10 @@
 
 [🌐 Website](https://baanis6.github.io/NeuroSense/) • [📊 Dashboard](https://baanis6.github.io/NeuroSense/dashboard.html) • [📄 Research Page](https://baanis6.github.io/NeuroSense/research.html)
 
+### 🏠 Homepage
+
+![Homepage](images/homepage.png)
+
 ---
 
 *Educational Research Prototype*
@@ -47,6 +51,10 @@ The objective is to investigate whether affordable consumer-grade IMUs can provi
 - 📱 Responsive interface
 - 🎯 Open-source project
 
+  ### 📊 Interactive Dashboard
+
+![Dashboard](images/dashboard.png)
+
 ---
 
 # Scientific Foundations
@@ -60,6 +68,10 @@ NeuroSense is based on five scientific disciplines.
 | Electronics | Embedded sensor systems |
 | Signal Processing | Noise filtering and feature extraction |
 | Computer Science | Data visualization and dashboard design |
+
+### 🔬 Research Portal
+
+![Research](images/research.png)
 
 ---
 
@@ -123,6 +135,10 @@ CSV Export
    ▼
 Research Analysis
 ```
+
+### 🏗️ System Architecture
+
+![Architecture](images/architecture.png)
 
 ---
 
