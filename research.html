@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — NeuroSense</title>
+<link rel="stylesheet" href="css/style.css">
+<meta name="description" content="Research overview for NeuroSense, a low-cost wearable neuromotor assessment platform: objectives, scientific foundations, architecture, timeline, and progress.">
+
+<!-- Font Awesome for iconography (same source as the homepage) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Same type system as the homepage: Space Grotesk / Inter / JetBrains Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Reuses the existing homepage stylesheet — no page-specific CSS is introduced here -->
+<link rel="stylesheet" href="css/research.css">
+</head>
+<body>
+
+<!-- ============ NOISE / GRID BACKDROP (fixed, behind everything — same as homepage) ============ -->
+<div class="page-backdrop" aria-hidden="true"></div>
+
+<!-- ============ NAVIGATION (identical structure/classes to index.html) ============ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28">
+          <circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <circle cx="16" cy="16" r="2.4" fill="currentColor"/>
+          <path d="M16 4 L16 10 M16 22 L16 28 M4 16 L10 16 M22 16 L28 16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="nav-logo-text">NEURO<span class="nav-logo-thin">SENSE</span></span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="research.html" class="active" aria-current="page">Research</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="survey.html">Survey</a></li>
+      <li><a href="https://github.com/neurosense-research" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+
+    <a href="#download-section" class="btn btn-nav-cta">
+      <span>Download Paper</span>
+      <i class="fa-solid fa-arrow-right"></i>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <p class="eyebrow" data-reveal>
+      <i class="fa-solid fa-flask-vial"></i>
+      Research Prototype &middot; Version 1.0
+    </p>
+
+    <h1 class="hero-headline" data-reveal>
+      <span class="hero-headline-accent">Research</span>
+    </h1>
+
+    <p class="hero-sub" data-reveal>
+      Developing an affordable wearable neuromotor assessment platform through physics,
+      biomechanics, embedded systems and signal processing.
+    </p>
+
+    <div class="hero-actions" data-reveal>
+      <a href="#project-overview" class="btn btn-primary">
+        Project Overview
+        <i class="fa-solid fa-chevron-down"></i>
+      </a>
+      <a href="dashboard.html" class="btn btn-secondary">
+        View Dashboard
+        <i class="fa-solid fa-gauge-high"></i>
+      </a>
+    </div>
+
+    <div class="hero-disclaimer" data-reveal>
+      <i class="fa-solid fa-circle-info"></i>
+      NeuroSense is an educational and research platform. It is not intended as a medical
+      diagnostic device.
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 1. PROJECT OVERVIEW ============ -->
+<section class="section" id="project-overview">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>01 — Project Overview</p>
+    <h2 class="section-title" data-reveal>What NeuroSense is — and isn't</h2>
+    <p class="section-lead" data-reveal>
+      NeuroSense is a low-cost wearable platform for measuring hand-movement characteristics
+      using inertial sensors and open-source signal processing. It is built as an educational
+      and research tool for exploring accessible motion-instrumentation methods —
+      <strong>it is not a medical diagnostic device</strong>, and it does not identify,
+      diagnose, or treat any condition. Its purpose is to make quantitative movement data
+      easier to collect and study outside specialist laboratories.
+    </p>
+
+    <div class="card-grid card-grid-3" id="overview-cards">
+      <article class="info-card" id="overview-objective" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-bullseye"></i></div>
+        <h3>Objective</h3>
+        <p>Design and validate a sub-$30 wearable sensor unit capable of capturing
+        repeatable, research-grade hand-motion signals for study and screening-support
+        contexts.</p>
+      </article>
+      <article class="info-card" id="overview-innovation" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+        <h3>Innovation</h3>
+        <p>Pairing a commodity IMU with an open signal-processing pipeline and a web
+        dashboard lowers both the cost and the technical barrier to quantitative motion
+        research.</p>
+      </article>
+      <article class="info-card" id="overview-future-vision" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-eye"></i></div>
+        <h3>Future Vision</h3>
+        <p>A reproducible, open-hardware measurement platform that other student and
+        academic research groups can adopt, extend, and validate independently.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. RESEARCH QUESTIONS ============ -->
+<section class="section section-alt" id="research-questions">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>02 — Research Questions</p>
+    <h2 class="section-title" data-reveal>What we're trying to find out</h2>
+    <p class="section-lead" data-reveal>
+      Four questions frame the current phase of the project and guide what gets measured,
+      built, and tested next.
+    </p>
+
+    <div class="card-grid card-grid-4" id="research-question-cards">
+      <article class="info-card research-question-card" id="question-imu-quantify" data-reveal>
+        <p class="section-eyebrow">Q1</p>
+        <h3>Can low-cost IMUs quantify hand movement?</h3>
+        <p>Whether a consumer-grade accelerometer and gyroscope can capture motion features
+        with enough consistency to be scientifically useful.</p>
+      </article>
+      <article class="info-card research-question-card" id="question-stability-measure" data-reveal>
+        <p class="section-eyebrow">Q2</p>
+        <h3>Can wearable sensors objectively measure movement stability?</h3>
+        <p>Whether stability and variance-based metrics derived from raw signals correlate
+        with observable movement characteristics.</p>
+      </article>
+      <article class="info-card research-question-card" id="question-dashboard-interpretation" data-reveal>
+        <p class="section-eyebrow">Q3</p>
+        <h3>Can web dashboards improve interpretation of motion data?</h3>
+        <p>Whether a browser-based visualization layer helps researchers read and compare
+        sessions faster than raw data logs.</p>
+      </article>
+      <article class="info-card research-question-card" id="question-affordable-support" data-reveal>
+        <p class="section-eyebrow">Q4</p>
+        <h3>How can affordable biomedical technology support research?</h3>
+        <p>Whether lowering hardware cost meaningfully expands who can run motion-measurement
+        studies, and where.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. SCIENTIFIC FOUNDATIONS ============ -->
+<section class="section" id="scientific-foundations">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>03 — Scientific Foundations</p>
+    <h2 class="section-title" data-reveal>The disciplines this project draws on</h2>
+    <p class="section-lead" data-reveal>
+      NeuroSense sits at the intersection of five fields. Hover or tap a card for the
+      concepts behind it.
+    </p>
+
+    <div class="tech-grid" id="foundation-cards">
+      <div class="tech-card" id="foundation-physics" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-solid fa-atom"></i></div>
+          <h3>Physics</h3>
+          <p class="tech-card-tag">Motion &amp; Force</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>Physics</h3>
+          <p>Kinematics and rigid-body motion underpin how raw acceleration and rotation
+          readings map onto real hand movement. Key concepts: linear acceleration, angular
+          velocity, reference frames.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="foundation-biomechanics" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-solid fa-hand"></i></div>
+          <h3>Biomechanics</h3>
+          <p class="tech-card-tag">Human Movement</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>Biomechanics</h3>
+          <p>Understanding hand and wrist range of motion informs sensor placement and task
+          design. Key concepts: joint articulation, tremor bands, postural control.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="foundation-electronics" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-solid fa-microchip"></i></div>
+          <h3>Electronics</h3>
+          <p class="tech-card-tag">Embedded Systems</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>Electronics</h3>
+          <p>Microcontroller I/O, serial communication, and power management make the
+          wearable practical to build and run. Key concepts: I2C, sampling rate, power
+          budget.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="foundation-signal-processing" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-solid fa-wave-square"></i></div>
+          <h3>Signal Processing</h3>
+          <p class="tech-card-tag">Filtering &amp; Features</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>Signal Processing</h3>
+          <p>Turning noisy raw signals into stable, comparable metrics. Key concepts: low-pass
+          filtering, FFT, feature extraction.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="foundation-web-technologies" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-solid fa-display"></i></div>
+          <h3>Web Technologies</h3>
+          <p class="tech-card-tag">Visualization</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>Web Technologies</h3>
+          <p>Browser-based dashboards make session review accessible without specialist
+          software. Key concepts: data visualization, client-side charting, responsive UI.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. DEVELOPMENT TIMELINE ============ -->
+<section class="section section-alt" id="development-timeline">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>04 — Development Timeline</p>
+    <h2 class="section-title" data-reveal>Where the project stands</h2>
+    <p class="section-lead" data-reveal>
+      Nine stages from initial concept to publication. Completed stages are marked below.
+    </p>
+
+    <div class="timeline" id="development-timeline-track">
+      <div class="timeline-track"></div>
+
+      <div class="timeline-item timeline-item-complete" id="stage-idea">
+        <span class="timeline-index">01</span>
+        <h4>Idea</h4>
+        <p>Defined the core concept: low-cost inertial sensing for hand-movement research.</p>
+        <span class="status-pill status-normal"><span class="status-dot"></span> Completed</span>
+      </div>
+      <div class="timeline-item timeline-item-complete" id="stage-literature-review">
+        <span class="timeline-index">02</span>
+        <h4>Literature Review</h4>
+        <p>Surveyed existing wearable motion-sensing and tremor-analysis research.</p>
+        <span class="status-pill status-normal"><span class="status-dot"></span> Completed</span>
+      </div>
+      <div class="timeline-item timeline-item-complete" id="stage-website">
+        <span class="timeline-index">03</span>
+        <h4>Website</h4>
+        <p>Built the public-facing research site presenting the project and its goals.</p>
+        <span class="status-pill status-normal"><span class="status-dot"></span> Completed</span>
+      </div>
+      <div class="timeline-item timeline-item-complete" id="stage-dashboard">
+        <span class="timeline-index">04</span>
+        <h4>Dashboard</h4>
+        <p>Prototyped the session-review dashboard with sample telemetry.</p>
+        <span class="status-pill status-normal"><span class="status-dot"></span> Completed</span>
+      </div>
+      <div class="timeline-item" id="stage-hardware">
+        <span class="timeline-index">05</span>
+        <h4>Hardware</h4>
+        <p>Assembling and calibrating the ESP32 + MPU6050 sensor unit.</p>
+      </div>
+      <div class="timeline-item" id="stage-data-collection">
+        <span class="timeline-index">06</span>
+        <h4>Data Collection</h4>
+        <p>Planned recording sessions across a standardized set of hand-motion tasks.</p>
+      </div>
+      <div class="timeline-item" id="stage-analysis">
+        <span class="timeline-index">07</span>
+        <h4>Analysis</h4>
+        <p>Feature-level analysis of collected sessions against the research questions.</p>
+      </div>
+      <div class="timeline-item" id="stage-research-paper">
+        <span class="timeline-index">08</span>
+        <h4>Research Paper</h4>
+        <p>Manuscript drafting summarizing methodology, results, and limitations.</p>
+      </div>
+      <div class="timeline-item" id="stage-publication">
+        <span class="timeline-index">09</span>
+        <h4>Publication</h4>
+        <p>Submission to a suitable venue and public release of findings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. SYSTEM ARCHITECTURE ============ -->
+<section class="section" id="system-architecture">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>05 — System Architecture</p>
+    <h2 class="section-title" data-reveal>How data moves through the system</h2>
+    <p class="section-lead" data-reveal>
+      From a hand movement to a research-ready dataset, in seven stages.
+    </p>
+
+    <div class="flow-diagram" id="architecture-flow" data-reveal>
+      <div class="flow-node" id="arch-user">
+        <div class="flow-node-icon"><i class="fa-solid fa-user"></i></div>
+        <h4>User</h4>
+        <p>Performs a standardized hand-motion task</p>
+      </div>
+      <div class="flow-connector"><span class="flow-dot"></span></div>
+      <div class="flow-node" id="arch-sensor">
+        <div class="flow-node-icon"><i class="fa-solid fa-mitten"></i></div>
+        <h4>Wearable Sensor</h4>
+        <p>MPU6050 captures raw motion</p>
+      </div>
+      <div class="flow-connector"><span class="flow-dot"></span></div>
+      <div class="flow-node" id="arch-esp32">
+        <div class="flow-node-icon"><i class="fa-solid fa-microchip"></i></div>
+        <h4>ESP32</h4>
+        <p>Reads and streams the signal</p>
+      </div>
+      <div class="flow-connector"><span class="flow-dot"></span></div>
+      <div class="flow-node" id="arch-processing">
+        <div class="flow-node-icon"><i class="fa-solid fa-wave-square"></i></div>
+        <h4>Data Processing</h4>
+        <p>Filters and extracts features</p>
+      </div>
+      <div class="flow-connector"><span class="flow-dot"></span></div>
+      <div class="flow-node" id="arch-dashboard">
+        <div class="flow-node-icon"><i class="fa-solid fa-gauge-high"></i></div>
+        <h4>Dashboard</h4>
+        <p>Displays session metrics</p>
+      </div>
+      <div class="flow-connector"><span class="flow-dot"></span></div>
+      <div class="flow-node" id="arch-csv-export">
+        <div class="flow-node-icon"><i class="fa-solid fa-file-csv"></i></div>
+        <h4>CSV Export</h4>
+        <p>Packages the session for analysis</p>
+      </div>
+      <div class="flow-connector"><span class="flow-dot"></span></div>
+      <div class="flow-node" id="arch-research-analysis">
+        <div class="flow-node-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        <h4>Research Analysis</h4>
+        <p>Feature-level study of the dataset</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. TECHNOLOGIES USED ============ -->
+<section class="section section-alt" id="technologies-used">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>06 — Technologies Used</p>
+    <h2 class="section-title" data-reveal>The toolkit behind NeuroSense</h2>
+    <p class="section-lead" data-reveal>
+      Hardware, software, and methods, in one place. Hover or tap a card for detail.
+    </p>
+
+    <div class="tech-grid" id="technology-cards">
+      <div class="tech-card" id="tech-esp32" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-solid fa-microchip"></i></div>
+          <h3>ESP32</h3>
+          <p class="tech-card-tag">Microcontroller</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>ESP32</h3>
+          <p>Dual-core microcontroller with built-in Wi-Fi, handling sensor polling and
+          serial streaming.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="tech-mpu6050" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-solid fa-compass"></i></div>
+          <h3>MPU6050</h3>
+          <p class="tech-card-tag">Inertial Sensor</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>MPU6050</h3>
+          <p>Six-axis accelerometer and gyroscope module capturing linear and rotational
+          hand motion.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="tech-html5" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-brands fa-html5"></i></div>
+          <h3>HTML5</h3>
+          <p class="tech-card-tag">Structure</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>HTML5</h3>
+          <p>Semantic markup for every page of the research site and dashboard.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="tech-css3" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-brands fa-css3-alt"></i></div>
+          <h3>CSS3</h3>
+          <p class="tech-card-tag">Styling</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>CSS3</h3>
+          <p>Custom properties, grid, and flexbox drive the site's layout and animation
+          system.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="tech-javascript" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-brands fa-js"></i></div>
+          <h3>JavaScript</h3>
+          <p class="tech-card-tag">Interactivity</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>JavaScript</h3>
+          <p>Powers the dashboard's live charts, scroll effects, and session controls.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="tech-github-pages" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-brands fa-github"></i></div>
+          <h3>GitHub Pages</h3>
+          <p class="tech-card-tag">Hosting</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>GitHub Pages</h3>
+          <p>Free static hosting for the public research site, versioned alongside the
+          codebase.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="tech-vscode" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-solid fa-code"></i></div>
+          <h3>VS Code</h3>
+          <p class="tech-card-tag">Development</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>VS Code</h3>
+          <p>Primary editor for firmware, Python scripts, and front-end code.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="tech-signal-processing" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-solid fa-wave-square"></i></div>
+          <h3>Signal Processing</h3>
+          <p class="tech-card-tag">Analysis</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>Signal Processing</h3>
+          <p>Filtering, calibration, and frequency analysis of raw sensor streams.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="tech-mems-sensors" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-solid fa-microchip"></i></div>
+          <h3>MEMS Sensors</h3>
+          <p class="tech-card-tag">Hardware</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>MEMS Sensors</h3>
+          <p>Micro-electromechanical sensing elements make compact, low-cost IMUs
+          possible.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="tech-physics" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-solid fa-atom"></i></div>
+          <h3>Physics</h3>
+          <p class="tech-card-tag">Foundation</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>Physics</h3>
+          <p>Kinematics and motion theory ground how sensor output is interpreted.</p>
+        </div>
+      </div>
+
+      <div class="tech-card" id="tech-biomechanics" data-reveal tabindex="0">
+        <div class="tech-card-face tech-card-front">
+          <div class="tech-card-icon"><i class="fa-solid fa-hand"></i></div>
+          <h3>Biomechanics</h3>
+          <p class="tech-card-tag">Foundation</p>
+        </div>
+        <div class="tech-card-face tech-card-back">
+          <h3>Biomechanics</h3>
+          <p>Human hand movement principles guide task design and sensor placement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. CURRENT PROGRESS ============ -->
+<section class="section" id="current-progress">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>07 — Current Progress</p>
+    <h2 class="section-title" data-reveal>How far along each track is</h2>
+    <p class="section-lead" data-reveal>
+      Progress is tracked independently across seven workstreams.
+    </p>
+
+    <div class="dash-grid progress-grid" id="progress-cards">
+      <article class="dash-card progress-card" id="progress-website" data-progress="100">
+        <div class="dash-card-head"><span>Website</span><span class="dash-card-unit">100%</span></div>
+        <div class="mini-bar"><div class="mini-bar-fill" data-fill="100"></div></div>
+      </article>
+      <article class="dash-card progress-card" id="progress-dashboard" data-progress="90">
+        <div class="dash-card-head"><span>Dashboard</span><span class="dash-card-unit">90%</span></div>
+        <div class="mini-bar"><div class="mini-bar-fill" data-fill="90"></div></div>
+      </article>
+      <article class="dash-card progress-card" id="progress-research" data-progress="60">
+        <div class="dash-card-head"><span>Research</span><span class="dash-card-unit">60%</span></div>
+        <div class="mini-bar"><div class="mini-bar-fill" data-fill="60"></div></div>
+      </article>
+      <article class="dash-card progress-card" id="progress-hardware" data-progress="40">
+        <div class="dash-card-head"><span>Hardware</span><span class="dash-card-unit">40%</span></div>
+        <div class="mini-bar"><div class="mini-bar-fill" data-fill="40"></div></div>
+      </article>
+      <article class="dash-card progress-card" id="progress-testing" data-progress="25">
+        <div class="dash-card-head"><span>Testing</span><span class="dash-card-unit">25%</span></div>
+        <div class="mini-bar"><div class="mini-bar-fill" data-fill="25"></div></div>
+      </article>
+      <article class="dash-card progress-card" id="progress-paper" data-progress="15">
+        <div class="dash-card-head"><span>Paper</span><span class="dash-card-unit">15%</span></div>
+        <div class="mini-bar"><div class="mini-bar-fill" data-fill="15"></div></div>
+      </article>
+      <article class="dash-card progress-card" id="progress-poster" data-progress="10">
+        <div class="dash-card-head"><span>Poster</span><span class="dash-card-unit">10%</span></div>
+        <div class="mini-bar"><div class="mini-bar-fill" data-fill="10"></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. FUTURE WORK ============ -->
+<section class="section section-alt" id="future-work">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>08 — Future Work</p>
+    <h2 class="section-title" data-reveal>Where the research goes next</h2>
+
+    <div class="card-grid card-grid-3" id="future-work-cards">
+      <article class="info-card" id="future-machine-learning" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-brain"></i></div>
+        <h3>Machine Learning</h3>
+        <p>Lightweight classifiers for grouping movement-feature patterns across sessions.</p>
+      </article>
+      <article class="info-card" id="future-cloud-dashboard" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-cloud"></i></div>
+        <h3>Cloud Dashboard</h3>
+        <p>Remote, longitudinal storage and review of session data across visits.</p>
+      </article>
+      <article class="info-card" id="future-clinical-validation" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+        <h3>Clinical Validation</h3>
+        <p>Structured comparison against established assessment methods, run with
+        appropriate oversight.</p>
+      </article>
+      <article class="info-card" id="future-multiple-imus" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-diagram-project"></i></div>
+        <h3>Multiple IMUs</h3>
+        <p>Additional sensor points across the hand and wrist for richer motion capture.</p>
+      </article>
+      <article class="info-card" id="future-mobile-app" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+        <h3>Mobile App</h3>
+        <p>A companion app for session capture and review away from a desktop.</p>
+      </article>
+      <article class="info-card" id="future-realtime-monitoring" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+        <h3>Real-time Monitoring</h3>
+        <p>Live-streamed sessions instead of post-hoc review of recorded data.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. REFERENCES ============ -->
+<section class="section" id="references">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>09 — References</p>
+    <h2 class="section-title" data-reveal>Selected background reading</h2>
+    <p class="section-lead" data-reveal>
+      A representative starting set rather than a full bibliography; the complete reference
+      list will accompany the manuscript.
+    </p>
+
+    <div class="research-side-card" id="reference-list-card" data-reveal>
+      <h4><i class="fa-solid fa-book"></i> References</h4>
+      <ul class="research-ref-list" id="reference-list">
+        <li>[1] Wearable Tremor Detection Literature</li>
+        <li>[2] MEMS Sensor Research</li>
+        <li>[3] Human Hand Biomechanics</li>
+        <li>[4] Low-Cost IMU Accuracy Benchmarking</li>
+        <li>[5] Signal-Processing Methods for Motion Analysis</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. DOWNLOAD SECTION ============ -->
+<section class="section section-alt contact-section" id="download-section">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>10 — Downloads</p>
+    <h2 class="section-title" data-reveal>Materials &amp; documentation</h2>
+    <p class="section-lead" data-reveal>
+      Publication-ready materials will be linked here as each is completed.
+    </p>
+
+    <div class="card-grid card-grid-3" id="download-cards">
+      <article class="info-card download-card" id="download-paper" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-file-lines"></i></div>
+        <h3>Research Paper</h3>
+        <p>Full manuscript covering methodology, results, and limitations.</p>
+        <button type="button" class="btn btn-secondary btn-block" disabled aria-disabled="true">Coming Soon</button>
+      </article>
+      <article class="info-card download-card" id="download-poster" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-image"></i></div>
+        <h3>Poster</h3>
+        <p>Conference-style summary of the project for presentation.</p>
+        <button type="button" class="btn btn-secondary btn-block" disabled aria-disabled="true">Coming Soon</button>
+      </article>
+      <article class="info-card download-card" id="download-dataset" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-database"></i></div>
+        <h3>Dataset</h3>
+        <p>Anonymized session data released alongside the manuscript.</p>
+        <button type="button" class="btn btn-secondary btn-block" disabled aria-disabled="true">Coming Soon</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER (identical structure/classes to index.html) ============ -->
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <div class="footer-brand">
+      <span class="nav-logo-text">NEURO<span class="nav-logo-thin">SENSE</span></span>
+      <p>Low-cost wearable neuromotor assessment research.</p>
+    </div>
+    <div class="footer-disclaimer">
+      <i class="fa-solid fa-circle-info"></i>
+      NeuroSense is a research prototype. It does not diagnose Parkinson's disease or any
+      neurological disorder — it measures and reports hand-movement characteristics only.
+    </div>
+    <div class="footer-meta">
+      <span>&copy; 2026 NeuroSense Research Project</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
