@@ -333,3 +333,234 @@ function showToast(message) {
   clearTimeout(showToast._timer);
   showToast._timer = setTimeout(() => toast.classList.remove('is-visible'), 3200);
 }
+document.addEventListener("DOMContentLoaded", () => {
+
+  const piSection = document.getElementById("principal-investigator");
+  if (!piSection) return; // Section not present on this page — nothing to do.
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ------------------------------------------------------------------------
+     1. SCROLL REVEAL (IntersectionObserver)
+     Scoped to this section only, so it never touches elements the existing
+     script.js already manages elsewhere on the page. Reveals the section's
+     top-level [data-reveal] blocks, then hands off to the staggered
+     entrance functions below for their inner children.
+     ------------------------------------------------------------------------ */
+  const revealTargets = piSection.querySelectorAll("[data-reveal]");
+
+  if (prefersReducedMotion) {
+    revealTargets.forEach((el) => el.classList.add("is-visible"));
+  } else if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const target = entry.target;
+          target.classList.add("is-visible");
+
+          if (target.id === "pi-stat-chips") animateChipCascade(target);
+          if (target.id === "pi-responsibilities") animateResponsibilityStagger(target);
+
+          observer.unobserve(target);
+        });
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    revealTargets.forEach((el) => revealObserver.observe(el));
+  } else {
+    revealTargets.forEach((el) => el.classList.add("is-visible"));
+  }
+
+  /* ------------------------------------------------------------------------
+     2. STATISTIC COUNTERS
+     Scans each stat chip's label for a leading number and animates a
+     count-up, preserving any surrounding text (e.g. "12+ Modules").
+     Chips with no numeric value (e.g. "India") are left untouched.
+     ------------------------------------------------------------------------ */
+  function animateStatCounters() {
+    const chipLabels = piSection.querySelectorAll(".stat-chip span");
+
+    chipLabels.forEach((label) => {
+      const raw = label.textContent.trim();
+      const match = raw.match(/^(\d+)(.*)$/);
+      if (!match) return; // No leading numeral — nothing to animate.
+
+      const target = parseInt(match[1], 10);
+      const suffix = match[2];
+      const duration = 900;
+      let start = null;
+
+      if (prefersReducedMotion) {
+        label.textContent = `${target}${suffix}`;
+        return;
+      }
+
+      function step(timestamp) {
+        if (start === null) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(target * eased);
+        label.textContent = `${value}${suffix}`;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  animateStatCounters();
+
+  /* ------------------------------------------------------------------------
+     3. RESEARCH / STATISTIC CHIP CASCADE
+     Cascading fade-and-rise entrance across the stat chips using the Web
+     Animations API, so no additional CSS classes or keyframes are needed.
+     ------------------------------------------------------------------------ */
+  function animateChipCascade(container) {
+    const chips = container.querySelectorAll(".stat-chip");
+    if (prefersReducedMotion) return;
+
+    chips.forEach((chip, index) => {
+      chip.animate(
+        [
+          { opacity: 0, transform: "translateY(10px)" },
+          { opacity: 1, transform: "translateY(0)" },
+        ],
+        {
+          duration: 480,
+          delay: index * 70,
+          easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+          fill: "backwards",
+        }
+      );
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     4. RESPONSIBILITY CARD STAGGER
+     One-by-one fade-and-rise entrance for each responsibility card, plus a
+     small independent pulse on each icon so the icons feel individually
+     animated rather than moving in lockstep with their card.
+     ------------------------------------------------------------------------ */
+  function animateResponsibilityStagger(container) {
+    const items = container.querySelectorAll(".pi-responsibility-item");
+    if (prefersReducedMotion) return;
+
+    items.forEach((item, index) => {
+      const delay = index * 90;
+
+      item.animate(
+        [
+          { opacity: 0, transform: "translateY(16px)" },
+          { opacity: 1, transform: "translateY(0)" },
+        ],
+        { duration: 520, delay, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "backwards" }
+      );
+
+      const icon = item.querySelector(".pi-responsibility-icon");
+      if (icon) {
+        icon.animate(
+          [
+            { transform: "scale(0.7)", opacity: 0 },
+            { transform: "scale(1.08)", opacity: 1, offset: 0.7 },
+            { transform: "scale(1)", opacity: 1 },
+          ],
+          { duration: 520, delay: delay + 90, easing: "ease-out", fill: "backwards" }
+        );
+      }
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     5. PORTRAIT TILT TOWARD CURSOR
+     Subtle 3D tilt of the portrait frame following the pointer, throttled
+     with requestAnimationFrame so mousemove never triggers layout more than
+     once per frame. Skipped entirely under reduced-motion.
+     ------------------------------------------------------------------------ */
+  const portraitWrap = piSection.querySelector(".pi-portrait-wrap");
+  const portraitFrame = piSection.querySelector(".pi-portrait-frame");
+
+  if (portraitWrap && portraitFrame && !prefersReducedMotion) {
+    const MAX_TILT_DEG = 5;
+    let pendingEvent = null;
+    let ticking = false;
+
+    function applyTilt() {
+      ticking = false;
+      if (!pendingEvent) return;
+
+      const rect = portraitWrap.getBoundingClientRect();
+      const relX = (pendingEvent.clientX - rect.left) / rect.width - 0.5;
+      const relY = (pendingEvent.clientY - rect.top) / rect.height - 0.5;
+
+      const rotateY = relX * MAX_TILT_DEG * 2;
+      const rotateX = relY * MAX_TILT_DEG * -2;
+
+      portraitFrame.style.transform =
+        `perspective(600px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
+    }
+
+    portraitWrap.addEventListener(
+      "mousemove",
+      (event) => {
+        pendingEvent = event;
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(applyTilt);
+        }
+      },
+      { passive: true }
+    );
+
+    portraitWrap.addEventListener(
+      "mouseleave",
+      () => {
+        portraitFrame.style.transform = "perspective(600px) rotateX(0deg) rotateY(0deg)";
+      },
+      { passive: true }
+    );
+  }
+
+  /* ------------------------------------------------------------------------
+     6. PARALLAX ON DECORATIVE BACKGROUND ELEMENTS
+     Ties the blueprint dot field and floating circles to scroll position
+     with a small, understated offset. Uses a single scroll listener shared
+     across all decorative elements and rAF-throttled writes.
+     ------------------------------------------------------------------------ */
+  const blueprintDots = piSection.querySelector(".pi-blueprint-dots");
+  const floatingCircles = piSection.querySelectorAll(".pi-floating-circle");
+
+  if ((blueprintDots || floatingCircles.length) && !prefersReducedMotion) {
+    let parallaxTicking = false;
+
+    function applyParallax() {
+      parallaxTicking = false;
+
+      const rect = piSection.getBoundingClientRect();
+      const viewportCenter = window.innerHeight / 2;
+      const sectionCenter = rect.top + rect.height / 2;
+      const offset = (viewportCenter - sectionCenter) * 0.04; // subtle, understated ratio
+
+      if (blueprintDots) {
+        blueprintDots.style.transform = `translateY(${offset.toFixed(2)}px)`;
+      }
+      floatingCircles.forEach((circle, index) => {
+        const factor = index % 2 === 0 ? 0.6 : -0.6;
+        circle.style.transform = `translateY(${(offset * factor).toFixed(2)}px)`;
+      });
+    }
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!parallaxTicking) {
+          parallaxTicking = true;
+          requestAnimationFrame(applyParallax);
+        }
+      },
+      { passive: true }
+    );
+
+    applyParallax(); // Set initial position without waiting for the first scroll event.
+  }
+
+});
