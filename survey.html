@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contribute — NeuroSense Research</title>
+<meta name="description" content="Participate in NeuroSense research: a short, anonymous survey helping shape the future of accessible wearable neuromotor assessment technology.">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Shared site design system, then this page's own rules -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/survey.css">
+</head>
+<body>
+
+<div class="page-backdrop" aria-hidden="true"></div>
+
+<!-- ============ NAVIGATION (identical structure/classes to index.html / research.html) ============ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28">
+          <circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <circle cx="16" cy="16" r="2.4" fill="currentColor"/>
+          <path d="M16 4 L16 10 M16 22 L16 28 M4 16 L10 16 M22 16 L28 16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="nav-logo-text">NEURO<span class="nav-logo-thin">SENSE</span></span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="survey.html" class="active" aria-current="page">Contribute</a></li>
+      <li><a href="https://github.com/BaaniS6/NeuroSense" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+
+    <a href="#https://forms.gle/VnCMiQVzbRMTaSic9" class="btn btn-nav-cta">
+      <span>Open Survey</span>
+      <i class="fa-solid fa-arrow-right"></i>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero survey-hero" id="top">
+  <div class="hero-inner">
+    <p class="eyebrow" data-reveal>
+      <i class="fa-solid fa-hand-holding-heart"></i>
+      Participate in Research
+    </p>
+
+    <h1 class="hero-headline" data-reveal>
+      Contribute to <span class="hero-headline-accent">NeuroSense Research</span>
+    </h1>
+
+    <p class="hero-sub" data-reveal>
+      Help shape the future of accessible wearable neuromotor assessment technology
+      through anonymous participation.
+    </p>
+
+    <ul class="survey-badges" id="survey-badges" data-reveal>
+      <li class="survey-badge">
+        <i class="fa-solid fa-user-secret"></i>
+        <span>Anonymous</span>
+      </li>
+      <li class="survey-badge">
+        <i class="fa-regular fa-clock"></i>
+        <span>2&ndash;3 Minutes</span>
+      </li>
+      <li class="survey-badge">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Educational Research</span>
+      </li>
+    </ul>
+
+    <div class="hero-actions" data-reveal>
+      <a href="https://forms.gle/VnCMiQVzbRMTaSic9" id="open-survey" class="btn btn-primary btn-large">
+        Open Survey
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 2. WHY PARTICIPATE ============ -->
+<section class="section" id="why-participate">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>01 &mdash; Why Participate</p>
+    <h2 class="section-title" data-reveal>Your response shapes the project</h2>
+    <p class="section-lead" data-reveal>
+      NeuroSense is built for real people, so it needs input from real people. A few minutes
+      of your time helps steer the next phase of research.
+    </p>
+
+    <div class="card-grid card-grid-3" id="why-participate-cards">
+      <article class="info-card" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-flask"></i></div>
+        <h3>Support Research</h3>
+        <p>Help improve wearable healthcare technology.</p>
+      </article>
+      <article class="info-card" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-diagram-project"></i></div>
+        <h3>Influence Future Development</h3>
+        <p>Your responses guide future hardware and software.</p>
+      </article>
+      <article class="info-card" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-user-shield"></i></div>
+        <h3>Anonymous Responses</h3>
+        <p>No personally identifiable information is collected.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. STUDY INFORMATION ============ -->
+<section class="section section-alt" id="study-information">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>02 &mdash; Study Information</p>
+    <h2 class="section-title" data-reveal>The basics, up front</h2>
+
+    <dl class="study-info-grid" id="study-info-grid" data-reveal>
+      <div class="study-info-item">
+        <dt>Study Type</dt>
+        <dd>Educational Research</dd>
+      </div>
+      <div class="study-info-item">
+        <dt>Participants</dt>
+        <dd>Anyone</dd>
+      </div>
+      <div class="study-info-item">
+        <dt>Duration</dt>
+        <dd>2&ndash;3 Minutes</dd>
+      </div>
+      <div class="study-info-item">
+        <dt>Responses</dt>
+        <dd>Anonymous</dd>
+      </div>
+      <div class="study-info-item">
+        <dt>Cost</dt>
+        <dd>Free</dd>
+      </div>
+      <div class="study-info-item">
+        <dt>Medical Advice</dt>
+        <dd>Not Provided</dd>
+      </div>
+      <div class="study-info-item">
+        <dt>Purpose</dt>
+        <dd>Wearable Motion Research</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ 4. WHAT YOU'LL BE ASKED ============ -->
+<section class="section" id="survey-preview">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>03 &mdash; What You'll Be Asked</p>
+    <h2 class="section-title" data-reveal>A short, focused set of questions</h2>
+
+    <div class="card-grid card-grid-4" id="survey-preview-cards">
+      <article class="info-card" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-watch-fitness"></i></div>
+        <h3>Wearable Familiarity</h3>
+        <p>Your experience with wearable technology in general.</p>
+      </article>
+      <article class="info-card" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-hand-dots"></i></div>
+        <h3>Comfort with Healthcare Devices</h3>
+        <p>How comfortable you are using devices that track health data.</p>
+      </article>
+      <article class="info-card" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-mitten"></i></div>
+        <h3>Opinions on Smart Gloves</h3>
+        <p>What you think of a wearable glove-style sensor concept.</p>
+      </article>
+      <article class="info-card" data-reveal>
+        <div class="info-card-icon"><i class="fa-solid fa-users"></i></div>
+        <h3>General Demographics</h3>
+        <p>A few broad, anonymous questions for context only.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. RESEARCH ETHICS ============ -->
+<section class="section section-alt" id="research-ethics">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>04 &mdash; Research Ethics</p>
+    <h2 class="section-title" data-reveal>How your participation is handled</h2>
+
+    <div class="research-side-card ethics-card" data-reveal>
+      <h4><i class="fa-solid fa-scale-balanced"></i> Participant Commitments</h4>
+      <ul class="ethics-list">
+        <li><i class="fa-solid fa-check"></i> Participation is voluntary.</li>
+        <li><i class="fa-solid fa-check"></i> Responses are anonymous.</li>
+        <li><i class="fa-solid fa-check"></i> No medical diagnosis is performed.</li>
+        <li><i class="fa-solid fa-check"></i> Data is used only for educational research.</li>
+        <li><i class="fa-solid fa-check"></i> Participants may stop at any time.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. RESEARCH STATISTICS ============ -->
+<section class="section" id="research-statistics">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>05 &mdash; Research Statistics</p>
+    <h2 class="section-title" data-reveal>Where things stand so far</h2>
+
+    <div class="stat-counter-grid" id="stat-counter-grid" data-reveal>
+      <div class="stat-counter-card">
+        <span class="stat-counter-value" id="participant-counter" data-count-to="10">0</span>
+        <span class="stat-counter-label">Research Participants</span>
+      </div>
+      <div class="stat-counter-card">
+        <span class="stat-counter-value" id="response-counter" data-count-to="10">0</span>
+        <span class="stat-counter-label">Responses Collected</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. FAQ ============ -->
+<section class="section section-alt" id="survey-faq">
+  <div class="section-inner">
+    <p class="section-eyebrow" data-reveal>06 &mdash; FAQ</p>
+    <h2 class="section-title" data-reveal>Common questions</h2>
+
+    <div class="faq-list" id="faq-list" data-reveal>
+      <div class="faq-item">
+        <h3 class="faq-heading">
+          <button type="button" class="faq-question" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+            <span>Who can participate?</span>
+            <i class="fa-solid fa-chevron-down faq-icon" aria-hidden="true"></i>
+          </button>
+        </h3>
+        <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1" hidden>
+          <p>Anyone is welcome to take part — no prior experience with wearable technology
+          or healthcare devices is required.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-heading">
+          <button type="button" class="faq-question" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+            <span>Will my name be recorded?</span>
+            <i class="fa-solid fa-chevron-down faq-icon" aria-hidden="true"></i>
+          </button>
+        </h3>
+        <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
+          <p>No. Responses are collected anonymously — no name, email, or other identifying
+          information is requested.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-heading">
+          <button type="button" class="faq-question" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+            <span>Can I stop at any time?</span>
+            <i class="fa-solid fa-chevron-down faq-icon" aria-hidden="true"></i>
+          </button>
+        </h3>
+        <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
+          <p>Yes. Participation is entirely voluntary, and you may close the survey at any
+          point without submitting.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-heading">
+          <button type="button" class="faq-question" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+            <span>Will this diagnose Parkinson's disease?</span>
+            <i class="fa-solid fa-chevron-down faq-icon" aria-hidden="true"></i>
+          </button>
+        </h3>
+        <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
+          <p>No. Neither this survey nor the NeuroSense platform diagnoses Parkinson's disease
+          or any other condition. This is an educational research project, not a medical
+          device.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. FINAL CTA ============ -->
+<section class="section final-cta-section" id="final-cta">
+  <div class="section-inner">
+    <h2 class="section-title final-cta-title" data-reveal>Ready to Contribute?</h2>
+    <p class="section-lead final-cta-lead" data-reveal>
+      It takes a few minutes and directly informs how NeuroSense is built. Thank you for
+      considering it.
+    </p>
+    <a href="https://forms.gle/VnCMiQVzbRMTaSic9" class="btn btn-primary btn-large" data-reveal>
+      Open Google Form
+      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER (identical structure/classes to index.html / research.html) ============ -->
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <div class="footer-brand">
+      <span class="nav-logo-text">NEURO<span class="nav-logo-thin">SENSE</span></span>
+      <p>Low-cost wearable neuromotor assessment research.</p>
+    </div>
+    <div class="footer-disclaimer">
+      <i class="fa-solid fa-circle-info"></i>
+      NeuroSense is a research prototype. It does not diagnose Parkinson's disease or any
+      neurological disorder — it measures and reports hand-movement characteristics only.
+    </div>
+    <div class="footer-meta">
+      <span>&copy; 2026 NeuroSense Research Project</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script src="js/survey.js"></script>
+</body>
+</body>
+</body>
+</html>

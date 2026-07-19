@@ -226,7 +226,7 @@ img { max-width: 100%; display: block; }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 18px;
   font-size: 0.92rem;
   font-weight: 500;
   color: var(--color-text-muted);
