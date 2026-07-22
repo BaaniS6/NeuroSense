@@ -270,33 +270,40 @@
 
   /* ------------------------------------------------------------------------
      9. LIVE CHARTS (Chart.js)
-     Builds a canvas inside each graph container, since dashboard.html only
-     provides an empty div for each — kept generic so a real data feed can
-     call the same updateCharts() path.
+     ADDED/FIXED: dashboard.html now ships its own <canvas id="accelerometerChart">
+     and <canvas id="gyroscopeChart"> elements directly inside the
+     .sensor-graph-container divs, so this no longer creates a canvas — it
+     just binds Chart.js to the canvases that already exist. (The previous
+     version looked for container ids "accelerometer-graph"/"gyroscope-graph"
+     to inject a canvas into, which no longer match the markup — that
+     mismatch is why the graphs were blank.)
      ------------------------------------------------------------------------ */
   function initCharts() {
-    state.charts.accel = createLineChart('accelerometer-graph', [
+    state.charts.accel = createLineChart('accelerometerChart', [
       { label: 'X', color: '#0B1F3A' },
       { label: 'Y', color: '#3B82F6' },
       { label: 'Z', color: '#60A5FA' },
     ]);
-    state.charts.gyro = createLineChart('gyroscope-graph', [
+    state.charts.gyro = createLineChart('gyroscopeChart', [
       { label: 'X', color: '#0B1F3A' },
       { label: 'Y', color: '#3B82F6' },
       { label: 'Z', color: '#60A5FA' },
     ]);
   }
 
-  function createLineChart(containerId, seriesConfig) {
-    const container = document.getElementById(containerId);
-    if (!container || typeof Chart === 'undefined') return null;
-
-    const canvas = document.createElement('canvas');
-    container.appendChild(canvas);
+  // ADDED: binds to an existing <canvas id="canvasId">, styled to match the
+  // dark theme (JetBrains Mono/Inter tick labels, muted grid lines) instead
+  // of creating a new element.
+  function createLineChart(canvasId, seriesConfig) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas || typeof Chart === 'undefined') return null;
 
     return new Chart(canvas, {
       type: 'line',
       data: {
+        // ADDED: only the most recent MAX_CHART_POINTS (50) samples are ever
+        // in state.accelHistory / state.gyroHistory (see pushHistory below),
+        // so labels/datasets here are always a rolling 50-point window.
         labels: Array(MAX_CHART_POINTS).fill(''),
         datasets: seriesConfig.map((series) => ({
           label: series.label,
@@ -311,17 +318,26 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        animation: { duration: 0 }, // smooth via interpolated data, not per-frame chart animation
+        // ADDED: short eased transition per update so new points animate in
+        // smoothly instead of snapping, as requested.
+        animation: { duration: 300, easing: 'easeOutQuart' },
         interaction: { intersect: false, mode: 'index' },
         plugins: {
           legend: {
             position: 'bottom',
-            labels: { boxWidth: 10, boxHeight: 10, usePointStyle: true, font: { family: 'Inter', size: 11 } },
+            labels: { boxWidth: 10, boxHeight: 10, usePointStyle: true, font: { family: 'Inter', size: 11 }, color: '#A8B0C8' },
+          },
+          tooltip: {
+            backgroundColor: '#050816',
+            titleFont: { family: 'JetBrains Mono', size: 11 },
+            bodyFont: { family: 'JetBrains Mono', size: 11 },
+            padding: 10,
+            cornerRadius: 8,
           },
         },
         scales: {
           x: { display: false },
-          y: { grid: { color: '#E5EBF3' }, ticks: { font: { family: 'JetBrains Mono', size: 10 } } },
+          y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { font: { family: 'JetBrains Mono', size: 10 }, color: '#626D8A' } },
         },
       },
     });
@@ -338,7 +354,9 @@
     chart.data.datasets[0].data = history.x;
     chart.data.datasets[1].data = history.y;
     chart.data.datasets[2].data = history.z;
-    chart.update('none');
+    // ADDED: dropped the 'none' mode so the configured animation above
+    // actually plays on every update.
+    chart.update();
   }
 
   /* ------------------------------------------------------------------------

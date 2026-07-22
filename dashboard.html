@@ -126,7 +126,14 @@
           <span class="sensor-panel-unit">m/s²</span>
         </header>
 
-        <canvas id="accelerometerChart"></canvas> class="sensor-graph-container" data-chart="accelerometer" aria-label="Accelerometer live graph"></div>
+        <div
+    class="sensor-graph-container"
+    data-chart="accelerometer"
+    aria-label="Accelerometer live graph">
+
+    <canvas id="accelerometerChart"></canvas>
+
+</div>
 
         <dl id="accelerometer-readouts" class="sensor-readouts">
           <div class="sensor-readout" id="accel-x-readout">
@@ -162,7 +169,14 @@
           <span class="sensor-panel-unit">°/s</span>
         </header>
 
-       <canvas id="gyroscopeChart"></canvas> class="sensor-graph-container" data-chart="gyroscope" aria-label="Gyroscope live graph"></div>
+   <div
+    class="sensor-graph-container"
+    data-chart="gyroscope"
+    aria-label="Gyroscope live graph">
+
+    <canvas id="gyroscopeChart"></canvas>
+
+</div>
 
         <dl id="gyroscope-readouts" class="sensor-readouts">
           <div class="sensor-readout" id="gyro-x-readout">
@@ -275,6 +289,7 @@
   <a href="https://github.com/BaaniS6/NeuroSense" id="footer-github-link" class="footer-github-link" target="_blank" rel="noopener">GitHub Repository</a>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/dashboard.js"></script>
 
 </body>
